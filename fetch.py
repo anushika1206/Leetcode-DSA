@@ -82,3 +82,15 @@ for sub in submissions:
     if code:   # ✅ only save if code exists
         save_code(title, code, lang)
 
+def push_to_github():
+    import os
+    os.system("git add .")
+    result = os.system('git commit -m "Added new LeetCode solutions"')
+    
+    if result != 0:
+        print("No changes to commit")
+
+    os.system("git push")
+
+
+push_to_github()
