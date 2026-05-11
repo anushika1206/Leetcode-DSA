@@ -75,13 +75,20 @@ for sub in submissions:
     title = sub["title"]
     lang = sub["lang"]
 
+    folder = title.replace(" ", "-")
+
+    # ✅ Skip if already exists
+    if os.path.exists(folder):
+        print(f"Skipping: {title} (already exists)")
+        continue
+
     print(f"Fetching: {title}")
 
     code = get_code(sub_id)
 
-    if code:   # ✅ only save if code exists
+    if code:
         save_code(title, code, lang)
-
+        
 def push_to_github():
     import os
     os.system("git add .")
